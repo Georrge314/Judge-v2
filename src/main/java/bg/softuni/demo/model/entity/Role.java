@@ -1,6 +1,9 @@
-package bg.softuni.demo.model;
+package bg.softuni.demo.model.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -11,6 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Role {
 
     @Id
@@ -18,5 +23,6 @@ public class Role {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
+    @NonNull
     private String name;
 }

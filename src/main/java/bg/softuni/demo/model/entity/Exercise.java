@@ -1,4 +1,4 @@
-package bg.softuni.demo.model;
+package bg.softuni.demo.model.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
