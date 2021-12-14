@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -56,5 +58,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserByUsername(String username) {
         return userRepo.findByUsername(username);
+    }
+
+    @Override
+    public void updateRole(String username, String roleName) {
+        Optional<User> optionalUser = userRepo.findByUsername(username);
+        Optional<Role> optionalRole = roleRepo.findByName(roleName);
+
+        if (optionalUser.isPresent() && optionalRole.isPresent()) {
+            User user = optionalUser.get();
+            Role role = optionalRole.get();
+
+            user.setRole(role);
+            userRepo.save(user);
+        }
+    }
+
+    @Override
+    public List<String> getAllUsernames() {
+        return userRepo.findAll().stream().map(User::getUsername).collect(Collectors.toList());
     }
 }
