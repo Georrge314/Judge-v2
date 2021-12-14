@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
     public boolean findByUsernameAndPassword(String username, String password) {
         return userRepo.findByUsernameAndPassword(username, password).isPresent();
     }
+
+    @Override
+    public Optional<User> getUserByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
 }

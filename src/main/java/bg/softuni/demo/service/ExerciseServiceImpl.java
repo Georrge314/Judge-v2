@@ -1,4 +1,25 @@
 package bg.softuni.demo.service;
 
-public class ExerciseServiceImpl {
+import bg.softuni.demo.dao.ExerciseRepo;
+import bg.softuni.demo.model.entity.Exercise;
+import bg.softuni.demo.model.service.ExerciseCreateService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ExerciseServiceImpl implements ExerciseService {
+    private final ExerciseRepo exerciseRepo;
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public ExerciseServiceImpl(ExerciseRepo exerciseRepo, ModelMapper modelMapper) {
+        this.exerciseRepo = exerciseRepo;
+        this.modelMapper = modelMapper;
+    }
+
+    @Override
+    public void create(ExerciseCreateService exerciseService) {
+        exerciseRepo.save(modelMapper.map(exerciseService, Exercise.class));
+    }
 }

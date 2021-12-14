@@ -1,6 +1,9 @@
 package bg.softuni.demo.service;
 
+import bg.softuni.demo.model.entity.User;
 import bg.softuni.demo.model.service.UserRegisterService;
+
+import java.util.Optional;
 
 public interface UserService {
     void create(UserRegisterService userRegisterService);
@@ -10,4 +13,6 @@ public interface UserService {
     boolean findByEmail(String email);
 
     boolean findByUsernameAndPassword(String username, String password);
+
+    Optional<User> getUserByUsername(String username);
 }
