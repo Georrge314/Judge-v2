@@ -7,6 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
     private final ExerciseRepo exerciseRepo;
@@ -21,5 +24,10 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public void create(ExerciseCreateService exerciseService) {
         exerciseRepo.save(modelMapper.map(exerciseService, Exercise.class));
+    }
+
+    @Override
+    public List<String> getAllExerciseNames() {
+        return exerciseRepo.findAll().stream().map(Exercise::getName).collect(Collectors.toList());
     }
 }

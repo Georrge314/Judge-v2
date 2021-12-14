@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/exercise")
+@RequestMapping("/exercises")
 public class ExerciseController {
     private final ExerciseService exerciseService;
     private final UserService userService;
@@ -33,7 +33,7 @@ public class ExerciseController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/add")
+    @GetMapping("add")
     public String getExercise(Model model, HttpSession httpSession) {
         String username = (String) httpSession.getAttribute("username");
         Optional<User> optionalUser = userService.getUserByUsername(username);
@@ -46,7 +46,7 @@ public class ExerciseController {
         return "redirect:/";
     }
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public String postExercise(@Valid ExerciseBinding exerciseBinding,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
