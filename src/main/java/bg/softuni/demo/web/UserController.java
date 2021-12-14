@@ -58,6 +58,7 @@ public class UserController {
         }
 
         httpSession.setAttribute("user", userLoginBinding);
+        httpSession.setAttribute("username", userLoginBinding.getUsername());
         return "redirect:/";
     }
 
