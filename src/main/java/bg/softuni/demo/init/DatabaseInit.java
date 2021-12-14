@@ -1,7 +1,7 @@
 package bg.softuni.demo.init;
 
 import bg.softuni.demo.dao.RoleRepo;
-import bg.softuni.demo.model.Role;
+import bg.softuni.demo.model.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,10 +19,8 @@ public class DatabaseInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role roleAdmin = new Role();
-        roleAdmin.setName("ADMIN");
-        Role roleUser = new Role();
-        roleUser.setName("USER");
+        Role roleAdmin = new Role("ADMIN");
+        Role roleUser = new Role("USER");
 
         roleRepo.saveAll(List.of(roleAdmin, roleUser));
     }
